@@ -93,9 +93,9 @@ export default function Home() {
             <img src={URL.createObjectURL(blob as Blob)} onLoad={() => setIsReady(true)} className="max-w-2xl" alt="Image" />
           </div>
           <div className="text-center font-light text-gray-400 pb-3">
-            <p className="text-2xl">
+            {metadata?.Model?.description || metadata?.['Device Manufacturer']?.description ? <p className="text-2xl">
               Shot on <strong className="font-semibold text-black">{metadata?.Model?.description || metadata?.['Device Manufacturer']?.description}</strong>
-            </p>
+            </p> : <></>}
             {metadata?.FocalLengthIn35mmFilm?.description ? <p className="text-lg mt-1 space-x-2">
               <span>{metadata?.FocalLengthIn35mmFilm?.description}mm</span>
               <span>{metadata?.FNumber?.description}</span>
