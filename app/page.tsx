@@ -1,7 +1,7 @@
 'use client'
 
-import { useToPng } from '@hugocxl/react-to-image'
 import * as ExifReader from 'exifreader'
+import { domToPng } from 'modern-screenshot'
 import { Caveat } from 'next/font/google'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -13,30 +13,16 @@ export default function Home() {
   const [blob, setBlob] = useState<Blob | null>(null)
   const [isReady, setIsReady] = useState(false)
   const [result, setResult] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
   const [metadata, setMetadata] = useState<ExifReader.Tags | null>(null)
   const refWrap = useRef<HTMLDivElement>(null)
-  const [_, convert, ref] = useToPng({
-    onSuccess: base64 => {
-      setResult(base64)
-      if (!refWrap.current) return
-      refWrap.current.classList.add('hidden')
-    },
-    onError: err => setError(err)
-  })
 
   useEffect(() => {
     if (files) {
       (async () => {
         const file = files[0]
         const tags = await ExifReader.load(file)
-        if (!tags?.FocalLengthIn35mmFilm?.description) {
-          setError('No EXIF data found')
-          return
-        }
         setMetadata(tags)
-
-        if (file.name.toLowerCase().endsWith('.heic') && window) {
+        if (file.name.toLowerCase().endsWith('.heic')) {
           const heic2any = (await import('heic2any')).default
           const blob = await heic2any({ blob: file })
           setBlob(blob as Blob)
@@ -53,7 +39,16 @@ export default function Home() {
       if (!window) return
       if (!refWrap.current) return
       refWrap.current.classList.remove('hidden')
-      setTimeout(() => convert(), 1500)
+
+      ;(async () => {
+        let dataUrl = await domToPng(document.querySelector('#main')!)
+        dataUrl = await domToPng(document.querySelector('#main')!)
+        dataUrl = await domToPng(document.querySelector('#main')!)
+
+        setResult(dataUrl)
+        if (!refWrap.current) return
+        refWrap.current.classList.add('hidden')
+      })()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady])
@@ -73,9 +68,7 @@ export default function Home() {
       </div>
     </div>
     <div className="container mx-auto space-y-4 py-6">
-      {files && !result ? <p className="text-center">Processing...</p> : <>
-        {error ? <p className="text-red-400 text-center">{error}</p> : <></>}
-      </>}
+      {files && !result ? <p className="text-center">Processing...</p> : <></>}
       {result ? <div className="space-y-4 flex items-center flex-col">
         <img src={result} className="max-w-sm w-full border" alt="Image" />
         <div className="flex gap-3">
@@ -95,20 +88,20 @@ export default function Home() {
       </div> : <></>}
 
       {blob && metadata ? <div className="border hidden w-fit mx-auto" ref={refWrap}>
-        <div ref={ref} className="p-8 flex-col items-center space-y-10 mx-auto bg-white">
+        <div id="main" className="p-8 flex-col items-center space-y-10 mx-auto bg-white">
           <div>
             <img src={URL.createObjectURL(blob as Blob)} onLoad={() => setIsReady(true)} className="max-w-2xl" alt="Image" />
           </div>
           <div className="text-center font-light text-gray-400 pb-3">
             <p className="text-2xl">
-              Shot on <strong className="font-semibold text-black">{metadata?.Model?.description}</strong>
+              Shot on <strong className="font-semibold text-black">{metadata?.Model?.description || metadata?.['Device Manufacturer']?.description}</strong>
             </p>
-            <p className="text-lg mt-1 space-x-2">
+            {metadata?.FocalLengthIn35mmFilm?.description ? <p className="text-lg mt-1 space-x-2">
               <span>{metadata?.FocalLengthIn35mmFilm?.description}mm</span>
               <span>{metadata?.FNumber?.description}</span>
               <span>{metadata?.ExposureTime?.description}s</span>
               <span>ISO{metadata?.ISOSpeedRatings?.description}</span>
-            </p>
+            </p> : <></>}
           </div>
         </div>
       </div> : <div className="space-y-4 flex items-center flex-col">
