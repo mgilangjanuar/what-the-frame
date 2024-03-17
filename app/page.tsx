@@ -1,113 +1,107 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+'use client'
+
+import { useToPng } from '@hugocxl/react-to-image'
+import * as ExifReader from 'exifreader'
+import heic2any from 'heic2any'
+import { Caveat } from 'next/font/google'
+import { useEffect, useRef, useState } from 'react'
+
+const caveat = Caveat({ subsets: ['latin'] })
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+  const [files, setFiles] = useState<FileList | null>(null)
+  const [blob, setBlob] = useState<Blob | null>(null)
+  const [isReady, setIsReady] = useState(false)
+  const [result, setResult] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [metadata, setMetadata] = useState<ExifReader.Tags | null>(null)
+  const refWrap = useRef<HTMLDivElement>(null)
+  const [_, convert, ref] = useToPng({
+    onSuccess: base64 => {
+      setResult(base64)
+      if (!refWrap.current) return
+      refWrap.current.classList.add('hidden')
+    },
+    onError: err => setError(err)
+  })
+
+  useEffect(() => {
+    if (files) {
+      (async () => {
+        const file = files[0]
+        const tags = await ExifReader.load(file)
+        if (!tags?.FocalLengthIn35mmFilm?.description) {
+          setError('No EXIF data found')
+          return
+        }
+        setMetadata(tags)
+
+        if (file.name.toLowerCase().endsWith('.heic')) {
+          const blob = await heic2any({ blob: file })
+          setBlob(blob as Blob)
+        } else {
+          const blob = new Blob([file], { type: file.type })
+          setBlob(blob)
+        }
+      })()
+    }
+  }, [files])
+
+  useEffect(() => {
+    if (isReady) {
+      if (!refWrap.current) return
+      refWrap.current.classList.remove('hidden')
+      convert()
+    }
+  }, [isReady])
+
+  return <div className="min-h-svh">
+    <div className="navbar bg-base-100 shadow-lg">
+      <div className="flex-1">
+        <a className={`${caveat.className} btn btn-ghost text-3xl`}>What The Frame</a>
+      </div>
+      <div className="flex-none">
+        <button className="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div className="container mx-auto space-y-4 py-6">
+      {files && !result ? <p className="text-center">Processing...</p> : <>
+        {error ? <p className="text-red-400 text-center">{error}</p> : <></>}
+      </>}
+      {result ? <div className="space-y-4 flex items-center flex-col">
+        <img src={result} className="max-w-sm w-full border" alt="Image" />
+        <div className="flex gap-3">
+          <a href={result} download="shot.png" className="btn btn-neutral">Download</a>
+          <button className="btn btn-ghost" onClick={() => {
+            window.location.reload()
+          }}>Generate Again</button>
         </div>
-      </div>
+      </div> : <></>}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+      {blob && metadata ? <div className="border w-fit hidden mx-auto" ref={refWrap}>
+        <div ref={ref} className="p-8 flex-col items-center space-y-10 w-fit mx-auto bg-white">
+          <div>
+            <img src={URL.createObjectURL(blob as Blob)} onLoad={() => setIsReady(true)} className="" alt="Image" />
+          </div>
+          <div className="text-center font-light text-gray-400 pb-3">
+            <p className="text-2xl">
+              Shot on <strong className="font-semibold text-black">{metadata?.Model?.description}</strong>
+            </p>
+            <p className="text-lg mt-1 space-x-2">
+              <span>{metadata?.FocalLengthIn35mmFilm?.description}mm</span>
+              <span>{metadata?.FNumber?.description}</span>
+              <span>{metadata?.ExposureTime?.description}s</span>
+              <span>ISO{metadata?.ISOSpeedRatings?.description}</span>
+            </p>
+          </div>
+        </div>
+      </div> : <div className="space-y-4 flex items-center flex-col">
+        <img src="./Screenshot (1).png" className="max-w-sm w-full border mx-auto" alt="Image" />
+        <input type="file" multiple={false} className="file-input w-full max-w-xs" onChange={e => setFiles(e.target.files)} />
+      </div>}
+    </div>
+  </div>
 }
