@@ -106,7 +106,7 @@ export default function Home() {
         </div>
       </div> : <div className="space-y-4 flex items-center flex-col">
         <img src="./Screenshot (1).png" className="max-w-sm w-full border mx-auto" alt="Image" />
-        <input type="file" multiple={false} className="file-input w-full max-w-xs" onChange={e => setFiles(e.target.files)} />
+        <input type="file" multiple={false} className="file-input w-full max-w-xs" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
       </div>}
     </div>
   </div>
