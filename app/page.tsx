@@ -1,10 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { useToPng } from '@hugocxl/react-to-image'
 import * as ExifReader from 'exifreader'
-import heic2any from 'heic2any'
 import { Caveat } from 'next/font/google'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 const caveat = Caveat({ subsets: ['latin'] })
@@ -37,7 +36,8 @@ export default function Home() {
         }
         setMetadata(tags)
 
-        if (file.name.toLowerCase().endsWith('.heic')) {
+        if (file.name.toLowerCase().endsWith('.heic') && window) {
+          const heic2any = (await import('heic2any')).default
           const blob = await heic2any({ blob: file })
           setBlob(blob as Blob)
         } else {
@@ -50,10 +50,12 @@ export default function Home() {
 
   useEffect(() => {
     if (isReady) {
+      if (!window) return
       if (!refWrap.current) return
       refWrap.current.classList.remove('hidden')
-      convert()
+      setTimeout(() => convert(), 1500)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady])
 
   return <div className="min-h-svh">
@@ -62,9 +64,12 @@ export default function Home() {
         <a className={`${caveat.className} btn btn-ghost text-3xl`}>What The Frame</a>
       </div>
       <div className="flex-none">
-        <button className="btn btn-square btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-        </button>
+        <Link className="btn btn-square btn-ghost" href="https://github.com/mgilangjanuar/what-the-frame" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+          </svg>
+        </Link>
       </div>
     </div>
     <div className="container mx-auto space-y-4 py-6">
@@ -74,17 +79,25 @@ export default function Home() {
       {result ? <div className="space-y-4 flex items-center flex-col">
         <img src={result} className="max-w-sm w-full border" alt="Image" />
         <div className="flex gap-3">
-          <a href={result} download="shot.png" className="btn btn-neutral">Download</a>
           <button className="btn btn-ghost" onClick={() => {
+            if (!window) return
             window.location.reload()
           }}>Generate Again</button>
+          <a href={result} download="shot.png" className="btn btn-neutral">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+              <path d="M7 11l5 5l5 -5" />
+              <path d="M12 4l0 12" />
+            </svg>
+          </a>
         </div>
       </div> : <></>}
 
-      {blob && metadata ? <div className="border w-fit hidden mx-auto" ref={refWrap}>
-        <div ref={ref} className="p-8 flex-col items-center space-y-10 w-fit mx-auto bg-white">
+      {blob && metadata ? <div className="border hidden w-fit mx-auto" ref={refWrap}>
+        <div ref={ref} className="p-8 flex-col items-center space-y-10 mx-auto bg-white">
           <div>
-            <img src={URL.createObjectURL(blob as Blob)} onLoad={() => setIsReady(true)} className="" alt="Image" />
+            <img src={URL.createObjectURL(blob as Blob)} onLoad={() => setIsReady(true)} className="max-w-2xl" alt="Image" />
           </div>
           <div className="text-center font-light text-gray-400 pb-3">
             <p className="text-2xl">
