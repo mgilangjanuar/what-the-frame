@@ -96,12 +96,12 @@ export default function Home() {
             {metadata?.Model?.description || metadata?.['Device Manufacturer']?.description ? <p className="text-2xl">
               Shot on <strong className="font-semibold text-black">{metadata?.Model?.description || metadata?.['Device Manufacturer']?.description}</strong>
             </p> : <></>}
-            {metadata?.FocalLengthIn35mmFilm?.description ? <p className="text-lg mt-1 space-x-2">
-              <span>{metadata?.FocalLengthIn35mmFilm?.description}mm</span>
-              <span>{metadata?.FNumber?.description}</span>
-              <span>{metadata?.ExposureTime?.description}s</span>
-              <span>ISO{metadata?.ISOSpeedRatings?.description}</span>
-            </p> : <></>}
+            <p className="text-lg mt-1 space-x-2">
+              {metadata?.FocalLengthIn35mmFilm?.description ? <span>{metadata?.FocalLengthIn35mmFilm?.description}mm</span> : <></>}
+              {metadata?.FNumber?.description ? <span>{metadata?.FNumber?.description}</span> : <></>}
+              {metadata?.ExposureTime?.description ? <span>{metadata?.ExposureTime?.description}s</span> : <></>}
+              {metadata?.ISOSpeedRatings?.description ? <span>ISO{metadata?.ISOSpeedRatings?.description}</span> : <></>}
+            </p>
           </div>
         </div>
       </div> : <div className="space-y-4 flex items-center flex-col">
