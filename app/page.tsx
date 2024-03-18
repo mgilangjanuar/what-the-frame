@@ -304,11 +304,11 @@ export default function Home() {
     <div className="flex justify-center items-center py-8 flex-col mt-20 gap-2">
       <div className="divider"></div>
       <div className="container mx-auto">
-        <div className="flex gap-3 justify-between items-center w-full flex-wrap">
+        <div className="flex gap-3 justify-center md:justify-between items-center w-full flex-wrap">
           <p className="text-sm text-gray-500">
             &copy; {new Date().getFullYear()} What the Frame
           </p>
-          <p className="text-sm text-gray-500 flex gap-5">
+          <p className="text-xs text-gray-500 flex gap-3">
             <Link className="link" href="/terms">Terms of Service</Link>
             <Link className="link" href="/privacy">Privacy Policy</Link>
           </p>
