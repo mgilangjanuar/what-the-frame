@@ -54,7 +54,7 @@ export default function Home() {
 
   return <div>
     <div className="min-h-svh relative">
-      <div className="navbar bg-base-100 shadow-xl">
+      <div className="navbar bg-base-100 shadow-xl z-20 sticky top-0">
         <div className="flex-1">
           <a className={`${caveat.className} btn btn-ghost text-3xl`}>What the Frame</a>
         </div>
@@ -134,84 +134,89 @@ export default function Home() {
           </div>
         </div> : <div className="relative box">
           {/* <img src="./Screenshot (1).png" className="max-w-md w-full border mx-auto" alt="Image" /> */}
-          <PhotoAlbum layout="columns" photos={[
-            {
-              src: "./Screenshot (1).png",
-              width: 1472,
-              height: 2152,
-            },
-            {
-              src: "./Download (3).png",
-              width: 1472,
-              height: 2748,
-            },
-            {
-              src: "./Basboi fan.png",
-              width: 736,
-              height: 688,
-            },
-            {
-              src: "./Gunturr Prewed.jpeg",
-              width: 736,
-              height: 628,
-            },
-            {
-              src: "./Lang on X (1).jpeg",
-              width: 1472,
-              height: 2152,
-            },
-            {
-              src: "./Lang on X (2).jpeg",
-              width: 879,
-              height: 1296,
-            },
-            {
-              src: "./Lang on X.jpeg",
-              width: 736,
-              height: 1374,
-            },
-            {
-              src: "./Lang tweet photo.jpeg",
-              width: 736,
-              height: 558,
-            },
-            {
-              src: "./Lang.jpeg",
-              width: 736,
-              height: 628,
-            },
-            {
-              src: "./Screenshot (14).png",
-              width: 1360,
-              height: 1040,
-            },
-            {
-              src: "./Screenshot (11).png",
-              width: 1360,
-              height: 1173,
-            },
-            {
-              src: "./Lang Twitter Post.jpeg",
-              width: 736,
-              height: 1380,
-            },
-            {
-              src: "./Screenshot (16).png",
-              width: 1360,
-              height: 1173,
-            },
-            {
-              src: "./Screenshot (15).png",
-              width: 1360,
-              height: 2026,
-            },
-          ]} />
-          <div className="flex justify-center pt-52 pb-20 bg-gradient-to-b from-base-100/0 via-base-100/100 to-base-100 -mt-52 absolute w-full">
-            <div className="-mt-24">
-              <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-1 pl-1">
-                <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
-              </div>
+          <div className="flex justify-center py-64 -mt-60 bg-gradient-to-t from-base-100/0 via-base-100/100 to-base-100/100 absolute w-full z-10">
+            <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-1 pl-1">
+              <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
             </div>
+          </div>
+          <div className="pt-10">
+            <PhotoAlbum layout="columns" photos={[
+              {
+                src: "./Screenshot (1).png",
+                width: 1472,
+                height: 2152,
+              },
+              {
+                src: "./Download (3).png",
+                width: 1472,
+                height: 2748,
+              },
+              {
+                src: "./Basboi fan.png",
+                width: 736,
+                height: 688,
+              },
+              {
+                src: "./Gunturr Prewed.jpeg",
+                width: 736,
+                height: 628,
+              },
+              {
+                src: "./Lang on X (1).jpeg",
+                width: 1472,
+                height: 2152,
+              },
+              {
+                src: "./Lang on X (2).jpeg",
+                width: 879,
+                height: 1296,
+              },
+              {
+                src: "./Lang on X.jpeg",
+                width: 736,
+                height: 1374,
+              },
+              {
+                src: "./Lang tweet photo.jpeg",
+                width: 736,
+                height: 558,
+              },
+              {
+                src: "./Lang.jpeg",
+                width: 736,
+                height: 628,
+              },
+              {
+                src: "./Screenshot (14).png",
+                width: 1360,
+                height: 1040,
+              },
+              {
+                src: "./Screenshot (11).png",
+                width: 1360,
+                height: 1173,
+              },
+              {
+                src: "./Lang Twitter Post.jpeg",
+                width: 736,
+                height: 1380,
+              },
+              {
+                src: "./Screenshot (16).png",
+                width: 1360,
+                height: 1173,
+              },
+              {
+                src: "./Screenshot (15).png",
+                width: 1360,
+                height: 2026,
+              },
+              {
+                src: "./Urayz tweet.jpeg",
+                width: 1360,
+                height: 2026,
+              },
+            ]} />
           </div>
         </div>}
       </div>
