@@ -53,8 +53,8 @@ export default function Home() {
   }, [isReady])
 
   return <div>
-    <div className="min-h-svh relative pb-14">
-      <div className="navbar bg-base-100 shadow-lg">
+    <div className="min-h-svh relative">
+      <div className="navbar bg-base-100 shadow-xl">
         <div className="flex-1">
           <a className={`${caveat.className} btn btn-ghost text-3xl`}>What the Frame</a>
         </div>
@@ -67,7 +67,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="container mx-auto space-y-4 py-6">
+      <div className="container mx-auto space-y-4 py-16">
         {blob && !result ? <p className="text-center">Processing...</p> : <></>}
         {result ? <div className="space-y-4 flex items-center flex-col">
           <img src={result} className="max-w-md w-full border" alt="Image" />
