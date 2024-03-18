@@ -5,6 +5,7 @@ import { domToPng } from 'modern-screenshot'
 import { Caveat } from 'next/font/google'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { PhotoAlbum } from 'react-photo-album'
 
 const caveat = Caveat({ subsets: ['latin'] })
 
@@ -104,9 +105,68 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div> : <div className="space-y-4 flex items-center flex-col">
-        <img src="./Screenshot (1).png" className="max-w-md w-full border mx-auto" alt="Image" />
-        <input type="file" multiple={false} className="file-input w-full max-w-xs" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
+      </div> : <div className="relative box">
+        {/* <img src="./Screenshot (1).png" className="max-w-md w-full border mx-auto" alt="Image" /> */}
+        <PhotoAlbum layout="columns" photos={[
+          {
+            src: "./Screenshot (1).png",
+            width: 1472,
+            height: 2152,
+          },
+          {
+            src: "./Download (3).png",
+            width: 1472,
+            height: 2748,
+          },
+          {
+            src: "./Basboi fan.png",
+            width: 736,
+            height: 688,
+          },
+          {
+            src: "./Gunturr Prewed.jpeg",
+            width: 736,
+            height: 628,
+          },
+          {
+            src: "./Lang on X (1).jpeg",
+            width: 1472,
+            height: 2152,
+          },
+          {
+            src: "./Lang on X.jpeg",
+            width: 736,
+            height: 1374,
+          },
+          {
+            src: "./Lang tweet photo.jpeg",
+            width: 736,
+            height: 558,
+          },
+          {
+            src: "./Lang.jpeg",
+            width: 736,
+            height: 628,
+          },
+          {
+            src: "./Screenshot (10).png",
+            width: 1360,
+            height: 1040,
+          },
+          {
+            src: "./Screenshot (11).png",
+            width: 1360,
+            height: 1173,
+          },
+          {
+            src: "./Lang Twitter Post.jpeg",
+            width: 736,
+            height: 1380,
+          }
+        ]} />
+        <div className="text-center py-56 bg-gradient-to-b from-base-100/0 via-base-100 to-base-100 -mt-72 z-40 absolute w-full">
+          <input type="file" multiple={false} className="file-input w-full max-w-xs" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
+        </div>
       </div>}
     </div>
 
@@ -187,7 +247,7 @@ export default function Home() {
       </form>
     </dialog>
 
-    <dialog id="app-loading" className="modal modal-bottom sm:modal-middle z-40">
+    <dialog id="app-loading" className="modal modal-bottom sm:modal-middle z-10">
       <div className="modal-box">
         <h3 className="font-bold text-lg">Processing...</h3>
         <p>
