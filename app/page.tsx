@@ -191,10 +191,15 @@ export default function Home() {
               height: 1380,
             },
             {
+              src: "./Screenshot (16).png",
+              width: 1360,
+              height: 1173,
+            },
+            {
               src: "./Screenshot (15).png",
               width: 1360,
               height: 2026,
-            }
+            },
           ]} />
           <div className="flex justify-center pt-56 pb-36 bg-gradient-to-b from-base-100/0 via-base-100/100 to-base-100 -mt-64 z-40 absolute w-full">
             <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-0.5 pl-0.5">
