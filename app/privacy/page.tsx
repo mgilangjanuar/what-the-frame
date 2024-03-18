@@ -1,11 +1,11 @@
 export default function Privacy() {
   return <div className="container mx-auto py-6">
     <pre className="whitespace-pre-wrap">
-      {`# What The Frame - Privacy Policy
+      {`# What the Frame - Privacy Policy
 
 Effective Date: March 18, 2024
 
-Welcome to What The Frame (the "Service"). The Service is provided by [Appledore](https://appledore.dev) ("we," "us," or "our"). This Privacy Policy describes how we handle information when you use our Service.
+Welcome to What the Frame (the "Service"). The Service is provided by [Appledore](https://appledore.dev) ("we," "us," or "our"). This Privacy Policy describes how we handle information when you use our Service.
 
 ## 1. Information Handling
 

@@ -1,11 +1,11 @@
 export default function Terms() {
   return <div className="container mx-auto py-6">
     <pre className="whitespace-pre-wrap">
-      {`# What The Frame - Terms of Service
+      {`# What the Frame - Terms of Service
 
 Effective Date: March 18, 2024
 
-Welcome to What The Frame (the "Service"). The Service is provided by [Appledore](https://appledore.dev) ("we," "us," or "our"). By accessing or using the Service, you agree to comply with and be bound by these Terms of Service.
+Welcome to What the Frame (the "Service"). The Service is provided by [Appledore](https://appledore.dev) ("we," "us," or "our"). By accessing or using the Service, you agree to comply with and be bound by these Terms of Service.
 
 ## 1. Acceptance of Terms
 
