@@ -85,13 +85,13 @@ export default function Home() {
               </svg>
             </a>
           </div>
-          <div className="container mx-auto pt-28 space-y-7">
+          <div className="container mx-auto pt-20 space-y-7">
             <div className="divider"></div>
             <h2 className={`${caveat.className} text-3xl text-center`}>
               Thank you for using our service!
             </h2>
-            <div className="flex justify-center items-center gap-4 flex-wrap">
-              <Link className="btn btn-outline" href="https://invoice.xendit.co/donation/9SPxLQ490k" target="_blank">
+            <div className="flex justify-center items-center gap-3 flex-wrap">
+              <Link className="btn btn-outline btn-wide md:w-fit" href="https://invoice.xendit.co/donation/9SPxLQ490k" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                   <path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1" />
@@ -102,7 +102,7 @@ export default function Home() {
                 </svg>
                 Donate (IDR)
               </Link>
-              <Link className="btn btn-outline" href="https://github.com/sponsors/mgilangjanuar?frequency=one-time&sponsor=mgilangjanuar" target="_blank">
+              <Link className="btn btn-outline btn-wide md:w-fit" href="https://github.com/sponsors/mgilangjanuar?frequency=one-time&sponsor=mgilangjanuar" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                   <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
@@ -161,6 +161,11 @@ export default function Home() {
               height: 2152,
             },
             {
+              src: "./Lang on X (2).jpeg",
+              width: 879,
+              height: 1296,
+            },
+            {
               src: "./Lang on X.jpeg",
               width: 736,
               height: 1374,
@@ -201,9 +206,11 @@ export default function Home() {
               height: 2026,
             },
           ]} />
-          <div className="flex justify-center py-52 bg-gradient-to-b from-base-100/0 via-base-100/100 to-base-100 -mt-64 absolute w-full">
-            <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-1 pl-1">
-              <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
+          <div className="flex justify-center pt-52 pb-20 bg-gradient-to-b from-base-100/0 via-base-100/100 to-base-100 -mt-52 absolute w-full">
+            <div className="-mt-24">
+              <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-1 pl-1">
+                <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
+              </div>
             </div>
           </div>
         </div>}
@@ -301,7 +308,7 @@ export default function Home() {
         </form>
       </dialog>
     </div>
-    <div className="flex justify-center items-center py-8 flex-col mt-36 gap-2">
+    <div className="flex justify-center items-center py-8 flex-col mt-0 gap-2">
       <div className="divider"></div>
       <div className="container mx-auto">
         <div className="flex gap-3 justify-center md:justify-between items-center w-full flex-wrap">
