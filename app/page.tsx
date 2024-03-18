@@ -66,7 +66,7 @@ export default function Home() {
     <div className="min-h-svh relative">
       <div className="navbar bg-base-100 shadow-xl z-20 sticky top-0">
         <div className="flex-1">
-          <a className={`${caveat.className} btn btn-ghost text-3xl`}>What the Frame</a>
+          <a className={`${caveat.className} btn btn-ghost text-3xl`} href="/">What the Frame</a>
         </div>
         <div className="flex-none">
           <Link className="btn btn-square btn-ghost" href="https://github.com/mgilangjanuar/what-the-frame" target="_blank">
