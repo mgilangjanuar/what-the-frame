@@ -231,6 +231,11 @@ export default function Home() {
                 width: 1073,
                 height: 2048,
               },
+              {
+                src: "./What the Frame.png",
+                width: 1360,
+                height: 1280,
+              },
             ]} />
           </div>
         </div>}
