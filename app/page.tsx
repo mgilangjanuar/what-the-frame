@@ -67,7 +67,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="container mx-auto space-y-4 py-16">
+      <div className="container mx-auto space-y-4 py-8">
         {blob && !result ? <p className="text-center">Processing...</p> : <></>}
         {result ? <div className="space-y-4 flex items-center flex-col">
           <img src={result} className="max-w-md w-full border" alt="Image" />
@@ -132,7 +132,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div> : <div className="relative box">
+        </div> : <div className="relative box md:mt-16">
           {/* <img src="./Screenshot (1).png" className="max-w-md w-full border mx-auto" alt="Image" /> */}
           <PhotoAlbum layout="columns" photos={[
             {
