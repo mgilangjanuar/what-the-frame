@@ -52,10 +52,10 @@ export default function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady])
 
-  return <div className="min-h-svh relative">
+  return <div className="min-h-svh relative pb-14">
     <div className="navbar bg-base-100 shadow-lg">
       <div className="flex-1">
-        <a className={`${caveat.className} btn btn-ghost text-3xl`}>What The Frame</a>
+        <a className={`${caveat.className} btn btn-ghost text-3xl`}>What the Frame</a>
       </div>
       <div className="flex-none">
         <Link className="btn btn-square btn-ghost" href="https://github.com/mgilangjanuar/what-the-frame" target="_blank">
@@ -164,10 +164,14 @@ export default function Home() {
             height: 1380,
           }
         ]} />
-        <div className="text-center py-56 bg-gradient-to-b from-base-100/0 via-base-100 to-base-100 -mt-72 z-40 absolute w-full">
+        <div className="text-center pt-56 pb-36 bg-gradient-to-b from-base-100/0 via-base-100/100 to-base-100 -mt-72 z-40 absolute w-full">
           <input type="file" multiple={false} className="file-input w-full max-w-xs" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
         </div>
       </div>}
+    </div>
+
+    <div className="container mx-auto mt-28">
+      https://invoice.xendit.co/donation/9SPxLQ490k
     </div>
 
     <dialog id="app-dialog" className="modal modal-bottom sm:modal-middle">
@@ -208,31 +212,31 @@ export default function Home() {
             <label className="label">
               <span className="label-text">Device</span>
             </label>
-            <input type="text" placeholder="Device" name="device" className="input input-bordered" defaultValue={metadata?.Model?.description || metadata?.['Device Manufacturer']?.description} />
+            <input type="text" name="device" className="input input-bordered" defaultValue={metadata?.Model?.description || metadata?.['Device Manufacturer']?.description} />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Focal Length</span>
             </label>
-            <input type="text" placeholder="Focal Length" name="focal" className="input input-bordered" defaultValue={metadata?.FocalLengthIn35mmFilm?.description} />
+            <input type="text" name="focal" className="input input-bordered" defaultValue={metadata?.FocalLengthIn35mmFilm?.description} />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">F Number</span>
             </label>
-            <input type="text" placeholder="F Number" name="fnumber" className="input input-bordered" defaultValue={metadata?.FNumber?.description} />
+            <input type="text" name="fnumber" className="input input-bordered" defaultValue={metadata?.FNumber?.description} />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Exposure Time</span>
             </label>
-            <input type="text" placeholder="Exposure Time" name="exposure" className="input input-bordered" defaultValue={metadata?.ExposureTime?.description} />
+            <input type="text" name="exposure" className="input input-bordered" defaultValue={metadata?.ExposureTime?.description} />
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">ISO</span>
             </label>
-            <input type="text" placeholder="ISO" name="iso" className="input input-bordered" defaultValue={metadata?.ISOSpeedRatings?.description} />
+            <input type="text" name="iso" className="input input-bordered" defaultValue={metadata?.ISOSpeedRatings?.description} />
           </div>
           <div className="modal-action">
             <button type="submit" className="btn btn-neutral" disabled={loading}>
@@ -249,7 +253,10 @@ export default function Home() {
 
     <dialog id="app-loading" className="modal modal-bottom sm:modal-middle z-10">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">Processing...</h3>
+        <h3 className="font-bold text-lg flex items-center gap-5 justify-between">
+          Processing...
+          <span className="loading loading-dots"></span>
+        </h3>
         <p>
           Please wait while we process your image.
         </p>

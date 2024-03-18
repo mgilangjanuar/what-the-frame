@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'What The Frame',
+  title: 'What the Frame',
   description: 'Add white frame to your photos',
 }
 
