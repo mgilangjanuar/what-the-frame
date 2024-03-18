@@ -132,7 +132,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div> : <div className="relative box md:mt-16">
+        </div> : <div className="relative box">
           {/* <img src="./Screenshot (1).png" className="max-w-md w-full border mx-auto" alt="Image" /> */}
           <PhotoAlbum layout="columns" photos={[
             {
