@@ -176,7 +176,7 @@ export default function Home() {
               height: 628,
             },
             {
-              src: "./Screenshot (10).png",
+              src: "./Screenshot (14).png",
               width: 1360,
               height: 1040,
             },
