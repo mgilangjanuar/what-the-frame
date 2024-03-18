@@ -1,65 +1,38 @@
 export default function Privacy() {
   return <div className="container mx-auto py-6">
     <pre className="whitespace-pre-wrap">
-      {`# What the Frame Privacy Policy
+      {`# What The Frame - Privacy Policy
 
-Last Updated: 2024-03-18
+Effective Date: March 18, 2024
 
-Welcome to What the Frame! This Privacy Policy describes how we collect, use, and disclose your personal information when you use the What the Frame application ("the App"), provided by [Your Company Name] ("we", "us", or "our"). By accessing or using the App, you agree to the terms of this Privacy Policy.
+Welcome to What The Frame (the "Service"). The Service is provided by [Appledore](https://appledore.dev) ("we," "us," or "our"). This Privacy Policy describes how we handle information when you use our Service.
 
-## 1. Information We Collect
+## 1. Information Handling
 
-### 1.1. Information You Provide
+We do not collect, store, or process any personal information from users when they use the Service. All processing occurs client-side via the user's browser, and no data is transmitted to our servers.
 
-When you use the App, you may provide us with certain information, including but not limited to:
+## 2. Data Security
 
-- Images uploaded to the App for adding frames.
-- Any other information you choose to provide.
+Since we do not collect or store any user data, there is no risk of unauthorized access, alteration, disclosure, or destruction of personal information.
 
-### 1.2. Automatically Collected Information
+## 3. Third-Party Links
 
-When you use the App, we may automatically collect certain information, including but not limited to:
+The Service may contain links to third-party websites or services that are not owned or controlled by us. We are not responsible for the privacy practices or content of such third-party sites. We encourage you to review the privacy policies of those sites before providing any personal information.
 
-- Device information (such as device type, operating system, and browser type).
-- Log data (such as IP address, access times, and app usage activity).
+## 4. Children's Privacy
 
-## 2. How We Use Your Information
+The Service is not directed to children under the age of 13, and we do not knowingly collect personal information from children. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us so that we can delete such information.
 
-We may use the information we collect for the following purposes:
+## 5. Changes to this Privacy Policy
 
-- To provide and maintain the App.
-- To personalize your experience with the App.
-- To improve the App and develop new features.
-- To analyze usage of the App and gather demographic information.
-- To comply with legal obligations.
+We reserve the right to update or change this Privacy Policy at any time. Any changes will be effective immediately upon posting the updated Privacy Policy on the Service.
 
-## 3. How We Share Your Information
+## 6. Contact Us
 
-We may share your information with third parties for the following purposes:
+If you have any questions or concerns about this Privacy Policy, please contact us at business@appledore.dev.
 
-- With service providers who assist us in operating the App.
-- With law enforcement agencies or other governmental authorities if required by law.
-- In connection with a merger, acquisition, or sale of assets.
+By using the Service, you signify your acceptance of this Privacy Policy. If you do not agree to this policy, please do not use the Service.
 
-## 4. Data Retention
-
-We will retain your information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.
-
-## 5. Security
-
-We take reasonable measures to protect your information from unauthorized access, use, or disclosure. However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
-
-## 6. Children's Privacy
-
-The App is not intended for use by children under the age of 13. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us so that we can delete the information.
-
-## 7. Changes to this Privacy Policy
-
-We reserve the right to modify this Privacy Policy at any time. We will notify you of any changes by posting the new Privacy Policy on the App. Your continued use of the App after such changes will constitute your acceptance of the revised Privacy Policy.
-
-## 8. Contact Us
-
-If you have any questions about this Privacy Policy, please contact us at [business@appledore.dev](mailto:business@appledore.dev) or DM the creator on Twitter [@mgilangjanuar](https://dm.new/mgilangjanuar).
 `}
     </pre>
   </div>
