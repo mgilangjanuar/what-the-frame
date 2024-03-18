@@ -296,7 +296,7 @@ export default function Home() {
         </form>
       </dialog>
     </div>
-    <div className="flex justify-center items-center py-8 flex-col gap-2">
+    <div className="flex justify-center items-center py-8 flex-col mt-8 gap-2">
       <div className="divider"></div>
       <div className="container mx-auto">
         <div className="flex gap-3 justify-between items-center w-full flex-wrap">
