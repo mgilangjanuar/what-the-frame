@@ -201,9 +201,9 @@ export default function Home() {
               height: 2026,
             },
           ]} />
-          <div className="flex justify-center pt-56 pb-36 bg-gradient-to-b from-base-100/0 via-base-100/100 to-base-100 -mt-64 z-40 absolute w-full">
+          <div className="flex justify-center py-44 bg-gradient-to-b from-base-100/0 via-base-100/100 to-base-100 -mt-64 z-40 absolute w-full">
             <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-0.5 pl-0.5">
-              <input type="file" multiple={false} className="file-input w-full max-w-xs" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
+              <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
             </div>
           </div>
         </div>}
