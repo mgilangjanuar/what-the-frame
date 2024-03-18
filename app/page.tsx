@@ -216,6 +216,21 @@ export default function Home() {
                 width: 1360,
                 height: 2026,
               },
+              {
+                src: "./GI-e1fCboAAYKrk.jpeg",
+                width: 1073,
+                height: 2048,
+              },
+              {
+                src: "./GI-e1h4bcAAScYi.jpeg",
+                width: 1360,
+                height: 1173,
+              },
+              {
+                src: "./GI-e2G9awAA1Wjo.jpeg",
+                width: 1073,
+                height: 2048,
+              },
             ]} />
           </div>
         </div>}
