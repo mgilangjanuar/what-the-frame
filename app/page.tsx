@@ -130,7 +130,7 @@ export default function Home() {
                 <img src={URL.createObjectURL(blob as Blob)} onLoad={() => setIsReady(true)} className="max-w-7xl" alt="Image" />
               </div>
               <div className="text-center text-gray-400 pb-7">
-                {metadata?.Model?.description || metadata?.['Device Manufacturer']?.description ? <p className="text-4xl">
+                {metadata?.Model?.description || metadata?.['Device Manufacturer']?.description ? <p className="text-3xl">
                   Shot on <strong className="font-bold text-black">{metadata?.Model?.description || metadata?.['Device Manufacturer']?.description}</strong> {metadata?.Model?.description && metadata?.['Make']?.description && metadata?.Model?.description !== metadata?.['Make']?.description ? <strong className="font-medium text-black">{metadata?.['Make']?.description}</strong> : <></>}
                 </p> : <></>}
                 <p className="text-2xl mt-4 space-x-3">
@@ -146,7 +146,7 @@ export default function Home() {
           {/* <img src="./Screenshot (1).png" className="max-w-md w-full border mx-auto" alt="Image" /> */}
           <div className="flex justify-center py-20 -mt-16 bg-gradient-to-t from-base-100/0 via-base-100/100 to-base-100/100 absolute w-full z-10">
             <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-1 pr-1">
-              <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic" />
+              <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic,.raf" />
             </div>
           </div>
           <div className="pt-10">
@@ -250,6 +250,11 @@ export default function Home() {
                 src: "/What the Frame (1).png",
                 width: 1272,
                 height: 1052,
+              },
+              {
+                src: "/What the Frame (2).png",
+                width: 1352,
+                height: 1101,
               },
             ]} />
           </div>
