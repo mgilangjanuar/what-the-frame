@@ -187,6 +187,11 @@ export default function Home() {
                 height: 1374,
               },
               {
+                src: "/What the Frame (2).png",
+                width: 1352,
+                height: 1101,
+              },
+              {
                 src: "/Lang tweet photo.jpeg",
                 width: 736,
                 height: 558,
@@ -195,6 +200,11 @@ export default function Home() {
                 src: "/Lang.jpeg",
                 width: 736,
                 height: 628,
+              },
+              {
+                src: "/shot.png",
+                width: 1352,
+                height: 1101,
               },
               {
                 src: "/Screenshot (14).png",
@@ -250,11 +260,6 @@ export default function Home() {
                 src: "/What the Frame (1).png",
                 width: 1272,
                 height: 1052,
-              },
-              {
-                src: "/What the Frame (2).png",
-                width: 1352,
-                height: 1101,
               },
             ]} />
           </div>
