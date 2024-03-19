@@ -146,7 +146,7 @@ export default function Home() {
           {/* <img src="./Screenshot (1).png" className="max-w-md w-full border mx-auto" alt="Image" /> */}
           <div className="flex justify-center py-20 -mt-16 bg-gradient-to-t from-base-100/0 via-base-100/100 to-base-100/100 absolute w-full z-10">
             <div className="w-fit animate-gradient rounded-lg bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-1 pr-1">
-              <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-sm" onChange={e => setFiles(e.target.files)} accept="image/*,.heic,.raf" />
+              <input type="file" multiple={false} className="file-input md:file-input-lg w-full max-w-xs md:max-w-md" onChange={e => setFiles(e.target.files)} accept="image/*,.heic,.raf" />
             </div>
           </div>
           <div className="pt-10">
