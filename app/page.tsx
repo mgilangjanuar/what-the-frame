@@ -40,6 +40,9 @@ export default function Home() {
       refWrap.current.classList.remove('hidden')
 
       ;(async () => {
+        if (new Date().getMonth() === 3 && new Date().getDate() === 1) {
+          await new Promise(resolve => setTimeout(resolve, 4000))
+        }
         let dataUrl = await domToPng(document.querySelector('#main')!)
         dataUrl = await domToPng(document.querySelector('#main')!)
         dataUrl = await domToPng(document.querySelector('#main')!)
@@ -80,19 +83,41 @@ export default function Home() {
       <div className="container mx-auto space-y-4 py-8">
         {blob && !result ? <p className="text-center">Processing...</p> : <></>}
         {result ? <div className="space-y-4 flex items-center flex-col">
-          <img src={result} className="max-w-md w-full border" alt="Image" />
+          {new Date().getMonth() === 3 && new Date().getDate() === 1 ? <div className="p-3 flex-col items-center space-y-5 mx-auto bg-white">
+            <div>
+              <img src={`https://www.placemonkeys.com/1024/1024?random`} className="max-w-md w-full border" alt="Image" />
+            </div>
+            <div className="text-center text-gray-400 pb-4">
+              {metadata?.Model?.description || metadata?.['Device Manufacturer']?.description ? <p className="text-sm">
+                Shot on <strong className="font-bold text-black">{metadata?.Model?.description || metadata?.['Device Manufacturer']?.description}</strong> {metadata?.Model?.description && metadata?.['Make']?.description && metadata?.Model?.description !== metadata?.['Make']?.description ? <strong className="font-medium text-black">{metadata?.['Make']?.description}</strong> : <></>}
+              </p> : <></>}
+              <p className="text-xs mt-1 space-x-3">
+                {metadata?.FocalLength?.description && metadata?.FocalLength?.description.toLowerCase() !== 'unknown' ? <span>{metadata?.FocalLength?.description.split(' ')[0]}mm</span> : <></>}
+                {metadata?.FNumber?.description ? <span>{metadata?.FNumber?.description}</span> : <></>}
+                {metadata?.ExposureTime?.description ? <span>{metadata?.ExposureTime?.description}s</span> : <></>}
+                {metadata?.ISOSpeedRatings?.description ? <span>ISO{metadata?.ISOSpeedRatings?.description}</span> : <></>}
+              </p>
+            </div>
+          </div> : <img src={result} className="max-w-md w-full border" alt="Image" />}
           <div className="flex gap-3">
             <button className="btn btn-ghost" onClick={() => {
               if (!window) return
               window.location.reload()
             }}>Generate Again</button>
             <a href={result} download="shot.png" className="btn btn-neutral">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              {new Date().getMonth() === 3 && new Date().getDate() === 1 ? <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M12 21a9 9 0 1 1 0 -18a9 9 0 0 1 0 18z" />
+                <path d="M15 10h-.01" />
+                <path d="M10 14v2a2 2 0 1 0 4 0v-2m1.5 0h-7" />
+                <path d="M7 10c.5 -1 2.5 -1 3 0" />
+              </svg> : <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
                 <path d="M7 11l5 5l5 -5" />
                 <path d="M12 4l0 12" />
-              </svg>
+              </svg>}
             </a>
           </div>
           <div className="container mx-auto pt-20 space-y-7">
